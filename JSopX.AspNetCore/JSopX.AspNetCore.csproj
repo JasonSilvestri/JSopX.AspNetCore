@@ -15,40 +15,127 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
-    <ProjectReference Include="..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.RCLxProper.csproj" />
-    <ProjectReference Include="..\JSopX.WebAPI\JSopX.WebAPI\JSopX.WebAPI.csproj" />
-  </ItemGroup>
+  
+      
+    <!-- 
+        # 1) In the first condition, we need to consider how the item group has been
+        configured, and why. 
+    
+        For example, we know we will be using:
+    
+        * JSopX.ClassLibrary, 
+        * JSopX.RCLxProper,
+        * JSopX.WebAPI, 
+        as primary references by default, 
+        along with their path. 
+        -->
+      <ItemGroup>
+        <ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
+        <ProjectReference Include="..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.RCLxProper.csproj" />
+        <ProjectReference Include="..\JSopX.WebAPI\JSopX.WebAPI\JSopX.WebAPI.csproj" />
+      </ItemGroup>
 
  
-  <!-- In the first condition, you're checking if the project path contains JSopX.WebAPI 
-   but not JSopX.AspNetCore. This is great for making sure the path works when it’s 
-   dealing with the JSopX.WebAPI only. --><!--
+      <!-- 
+        # 2) In the second condition, we need to consider whether or not the 
+        references are being called within JSopX.OpenProject or not. 
+        
+        Plus, if it isn't any of the projects that could effect Class Library, set 
+        to the same paths...
+        
+        If NOT:
+        * JSopX.OpenProjectX, 
+        * JSopX.RCLxProper,
+        * JSopX.WebAPI, 
+        set Class Library default. 
+      -->
   
-  <ItemGroup Condition=" $([System.String]::Copy($(ProjectPath)).Contains('JSopX.WebAPI')) AND !$([System.String]::Copy($(ProjectPath)).Contains('JSopX.AspNetCore')) ">
-    <ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
-  </ItemGroup>
+       <!-- Default case: 
+            If Not:
+            * JSopX.OpenProjectX, 
+            * JSopX.WebAPI, 
+            * or JSopX.RCLxProper
+            set default for class library like above -->
+      <ItemGroup Condition="!$([System.String]::Copy($(ProjectPath)).Contains('JSopX.OpenProjectX')) AND !$([System.String]::Copy($(ProjectPath)).Contains('JSopX.WebAPI')) AND !$([System.String]::Copy($(ProjectPath)).Contains('JSopX.RCLxProper'))">
+        <ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
+    </ItemGroup>
 
-  --><!-- In the second condition, you're handling when the project is in JSopX.AspNetCore, 
-       so you need to adjust the path:. 
-       --><!--
-  <ItemGroup Condition=" $([System.String]::Copy($(ProjectPath)).Contains('JSopX.AspNetCore')) ">
+
+
+
+  <!-- 
+        # 3) In the third condition, we need to consider whether or not the 
+        references are being called within JSopX.OpenProject and/or 
+        JSopX.AspNetCore. 
+        
+        Plus, if it isn't any of the projects that could effect Class Library, set 
+        to the same paths...
+        
+        If NOT:
+        * JSopX.OpenProjectX, 
+        
+        AND If:
+        * JSopX.AspNetCore,
+
+         set:
+         <ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
+         <ProjectReference Include="..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.RCLxProper.csproj" />
+         <ProjectReference Include="..\JSopX.WebAPI\JSopX.WebAPI\JSopX.WebAPI.csproj" />
+         
+-->
+
+  <!-- Class Library: Reference for 
+  JSopX.OpenProjectX and JSopX.AspNetCore and Class Library -->
+
+  <ItemGroup Condition="$([System.String]::Copy($(ProjectPath)).Contains('JSopX.OpenProjectX')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.AspNetCore')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.ClassLibrary')) ">
     <ProjectReference Include="..\..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
   </ItemGroup>
 
-  --><!-- The first condition ensures that JSopX.RCLxProper references the 
-       ClassLibrary only if it's not in AspNetCore:
-       --><!--
-  <ItemGroup Condition=" $([System.String]::Copy($(ProjectPath)).Contains('JSopX.RCLxProper')) AND !$([System.String]::Copy($(ProjectPath)).Contains('JSopX.AspNetCore')) ">
+
+  <!-- Class Library: Reference for 
+  JSopX.AspNetCore and Class Library Only -->
+
+  <ItemGroup Condition="!$([System.String]::Copy($(ProjectPath)).Contains('JSopX.OpenProjectX')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.AspNetCore')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.ClassLibrary')) ">
     <ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
   </ItemGroup>
 
-  --><!-- The second condition handles the scenario where both AspNetCore and
-       RCLxProper are involved:
-       --><!--
 
-  <ItemGroup Condition=" $([System.String]::Copy($(ProjectPath)).Contains('JSopX.AspNetCore')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.RCLxProper')) ">
-    <ProjectReference Include="..\..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
-  </ItemGroup>-->
+
+  <!-- Web API: Reference for 
+  JSopX.OpenProjectX and JSopX.AspNetCore and Web API -->
+
+  <ItemGroup Condition="$([System.String]::Copy($(ProjectPath)).Contains('JSopX.OpenProjectX')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.AspNetCore')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.WebAPI')) ">
+    <ProjectReference Include="..\..\JSopX.WebAPI\JSopX.WebAPI\JSopX.WebAPI.csproj" />
+    <ProjectReference Include="..\..\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
+  </ItemGroup>
+
+
+  <!--  Web API: Reference for 
+  JSopX.AspNetCore and Web API Only -->
+
+  <ItemGroup Condition="!$([System.String]::Copy($(ProjectPath)).Contains('JSopX.OpenProjectX')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.AspNetCore')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.WebAPI')) ">
+    <ProjectReference Include="..\JSopX.WebAPI\JSopX.WebAPI\JSopX.WebAPI.csproj" />
+    <ProjectReference Include="..\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
+  </ItemGroup>
+
+
+
+  <!-- RCL x Proper: Reference for 
+  JSopX.OpenProjectX and JSopX.AspNetCore and RCL x Proper -->
+
+  <ItemGroup Condition="$([System.String]::Copy($(ProjectPath)).Contains('JSopX.OpenProjectX')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.AspNetCore')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.RCLxProper')) ">
+    <ProjectReference Include="..\..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.RCLxProper.csproj" />
+    <ProjectReference Include="..\..\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
+  </ItemGroup>
+
+
+  <!--  RCL x Proper: Reference for 
+  JSopX.AspNetCore and RCL x Proper Only -->
+
+  <ItemGroup Condition="!$([System.String]::Copy($(ProjectPath)).Contains('JSopX.OpenProjectX')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.AspNetCore')) AND $([System.String]::Copy($(ProjectPath)).Contains('JSopX.RCLxProper')) ">
+    <ProjectReference Include="..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.RCLxProper.csproj" />
+    <ProjectReference Include="..\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
+  </ItemGroup>
+
+  
 </Project>

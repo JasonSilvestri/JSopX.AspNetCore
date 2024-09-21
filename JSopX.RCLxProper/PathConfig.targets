@@ -1,9 +1,20 @@
-<Project>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Define the paths -->
+
   <PropertyGroup>
-    <RCLxProperClassLibraryPath>..\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
+    <ClassLibraryPath>..\JSopX.ClassLibrary\JSopX.ClassLibrary</ClassLibraryPath>
   </PropertyGroup>
 
+  <!-- ItemGroup for references -->
   <ItemGroup>
-    <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    <ProjectReference Include="$(ClassLibraryPath)\JSopX.ClassLibrary.csproj" />
   </ItemGroup>
+
+  <!-- Define a target to output messages -->
+  <Target Name="RCLxProperPathConfigCheck">
+    <!-- Print a message if PathConfig.targets is loaded -->
+    <Message Text="JSopX Nova: PathConfig.targets file has been found and loaded inside official RCL x Proper project." Importance="high" />
+  </Target>
+
 </Project>

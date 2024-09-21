@@ -13,8 +13,8 @@
     <ClassLibraryPath>..\JSopX.ClassLibrary\JSopX.ClassLibrary</ClassLibraryPath>
     <WebAPIPath>..\JSopX.WebAPI\JSopX.WebAPI</WebAPIPath>
     <RCLxProperPath>..\JSopX.RCLxProper\JSopX.RCLxProper</RCLxProperPath>
-    <WebApiClassLibraryPath>..\..\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
-    <RCLxProperClassLibraryPath>..\..\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
+    <WebApiClassLibraryPath>..\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
+    <RCLxProperClassLibraryPath>..\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
   </PropertyGroup>
 
   <!-- ItemGroup for references -->
@@ -29,7 +29,7 @@
   <!-- Define a target to output messages -->
   <Target Name="PathConfigCheck">
     <!-- Print a message if PathConfig.targets is loaded -->
-    <Message Text="JSopX Nova: PathConfig.targets file has been found and loaded." Importance="high" />
+    <Message Text="JSopX Nova: PathConfig.targets file has been found and loaded inside official AspNetCore Project." Importance="high" />
   </Target>
 
 </Project>

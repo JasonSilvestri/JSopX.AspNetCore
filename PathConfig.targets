@@ -13,8 +13,8 @@
     <ClassLibraryPath>..\JSopX.ClassLibrary\JSopX.ClassLibrary</ClassLibraryPath>
     <WebAPIPath>..\JSopX.WebAPI\JSopX.WebAPI</WebAPIPath>
     <RCLxProperPath>..\JSopX.RCLxProper\JSopX.RCLxProper</RCLxProperPath>
-    <WebApiClassLibraryPath>..\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
-    <RCLxProperClassLibraryPath>..\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
+    <WebApiClassLibraryPath>..\..\..\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
+    <RCLxProperClassLibraryPath>..\..\..\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
   </PropertyGroup>
 
   <!-- ItemGroup for references -->

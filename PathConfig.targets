@@ -1,0 +1,24 @@
+<Project>
+  <PropertyGroup>
+    <AspNetCoreClassLibraryPath>..\JSopX.ClassLibrary\JSopX.ClassLibrary</AspNetCoreClassLibraryPath>
+    <AspNetCoreRCLxProperPath>..\JSopX.RCLxProper\JSopX.RCLxProper</AspNetCoreRCLxProperPath>
+    <AspNetCoreWebApiPath>..\JSopX.WebAPI\JSopX.WebAPI</AspNetCoreWebApiPath>
+
+    <AspNetCoreRCLxProperClassLibraryPath>JSopX.AspNetCore\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary</AspNetCoreRCLxProperClassLibraryPath>
+    <AspNetCoreWebApiClassLibraryPath>JSopX.AspNetCore\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</AspNetCoreWebApiClassLibraryPath>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(AspNetCoreClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    <ProjectReference Include="$(AspNetCoreRCLxProperPath)\JSopX.RCLxProper.csproj" />
+    <ProjectReference Include="$(AspNetCoreWebApiPath)\JSopX.WebAPI.csproj" />
+
+    <ProjectReference Include="$(AspNetCoreRCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    <ProjectReference Include="$(AspNetCoreWebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    
+    <!--<ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
+    <ProjectReference Include="..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.RCLxProper.csproj" />
+    <ProjectReference Include="..\JSopX.WebAPI\JSopX.WebAPI\JSopX.WebAPI.csproj" />-->
+  </ItemGroup>
+</Project>

@@ -1,24 +1,35 @@
-<Project>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Define the paths -->
+  <!--<PropertyGroup>
+    <ClassLibraryPath>..\JSopX.ClassLibrary\JSopX.ClassLibrary</ClassLibraryPath>
+    <WebAPIPath>..\JSopX.WebAPI\JSopX.WebAPI</WebAPIPath>
+    <RCLxProperPath>..\JSopX.RCLxProper\JSopX.RCLxProper</RCLxProperPath>
+    <WebApiClassLibraryPath>..\JSopX.WebAPI\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
+    <RCLxProperClassLibraryPath>..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
+  </PropertyGroup>-->
+
   <PropertyGroup>
-    <AspNetCoreClassLibraryPath>..\JSopX.ClassLibrary\JSopX.ClassLibrary</AspNetCoreClassLibraryPath>
-    <AspNetCoreRCLxProperPath>..\JSopX.RCLxProper\JSopX.RCLxProper</AspNetCoreRCLxProperPath>
-    <AspNetCoreWebApiPath>..\JSopX.WebAPI\JSopX.WebAPI</AspNetCoreWebApiPath>
-
-    <AspNetCoreRCLxProperClassLibraryPath>JSopX.AspNetCore\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary</AspNetCoreRCLxProperClassLibraryPath>
-    <AspNetCoreWebApiClassLibraryPath>JSopX.AspNetCore\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</AspNetCoreWebApiClassLibraryPath>
-
+    <ClassLibraryPath>..\JSopX.ClassLibrary\JSopX.ClassLibrary</ClassLibraryPath>
+    <WebAPIPath>..\JSopX.WebAPI\JSopX.WebAPI</WebAPIPath>
+    <RCLxProperPath>..\JSopX.RCLxProper\JSopX.RCLxProper</RCLxProperPath>
+    <WebApiClassLibraryPath>..\..\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
+    <RCLxProperClassLibraryPath>..\..\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
   </PropertyGroup>
 
+  <!-- ItemGroup for references -->
   <ItemGroup>
-    <ProjectReference Include="$(AspNetCoreClassLibraryPath)\JSopX.ClassLibrary.csproj" />
-    <ProjectReference Include="$(AspNetCoreRCLxProperPath)\JSopX.RCLxProper.csproj" />
-    <ProjectReference Include="$(AspNetCoreWebApiPath)\JSopX.WebAPI.csproj" />
-
-    <ProjectReference Include="$(AspNetCoreRCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />
-    <ProjectReference Include="$(AspNetCoreWebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
-    
-    <!--<ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
-    <ProjectReference Include="..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.RCLxProper.csproj" />
-    <ProjectReference Include="..\JSopX.WebAPI\JSopX.WebAPI\JSopX.WebAPI.csproj" />-->
+    <ProjectReference Include="$(ClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    <ProjectReference Include="$(WebApiPath)\JSopX.WebAPI.csproj" />
+    <ProjectReference Include="$(RCLxProperPath)\JSopX.RCLxProper.csproj" />
+    <ProjectReference Include="$(WebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />
   </ItemGroup>
+
+  <!-- Define a target to output messages -->
+  <Target Name="PathConfigCheck">
+    <!-- Print a message if PathConfig.targets is loaded -->
+    <Message Text="JSopX Nova: PathConfig.targets file has been found and loaded." Importance="high" />
+  </Target>
+
 </Project>

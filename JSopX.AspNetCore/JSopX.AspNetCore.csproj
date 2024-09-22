@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web" InitialTargets="PathConfigCheck">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web" InitialTargets="JsopXAspNetCorePathConfigCheck">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -17,6 +17,7 @@
 
 
 
+
   <!--Option 1: Original-->
 
   <!-- Import if the file exists -->
@@ -27,12 +28,9 @@
     <ProjectReference Include="$(ClassLibraryPath)\JSopX.ClassLibrary.csproj" />
     <ProjectReference Include="$(RCLxProperPath)\JSopX.RCLxProper.csproj" />
     <ProjectReference Include="$(WebApiPath)\JSopX.WebAPI.csproj" />
-
-    <!--<ProjectReference Include="$(WebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
-    <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />-->
   </ItemGroup>
-  
-  
+
+
   <!-- Default static project references if the file does not exist -->
   <ItemGroup Condition="!Exists('..\PathConfig.targets')">
     <ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />

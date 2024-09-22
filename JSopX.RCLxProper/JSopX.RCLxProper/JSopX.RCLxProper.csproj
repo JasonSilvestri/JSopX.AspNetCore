@@ -25,7 +25,7 @@
 
   <!-- Default static project references if the file does not exist -->
   <ItemGroup Condition="Exists('..\PathConfig.targets')">
-    <ProjectReference Include="$(ClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />
   </ItemGroup>
 
 

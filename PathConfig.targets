@@ -26,7 +26,7 @@
     <PathDepthDiff>$([MSBuild]::Subtract($(ProjectPathDepth), $(RootPathDepth)))</PathDepthDiff>
 
     <!-- Conditional Property Setting Based on PathDepthDiff -->
-    <WebApiClassLibraryPath Condition=" '$(PathDepthDiff)' == '0' ">..\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
+    <!--<WebApiClassLibraryPath Condition=" '$(PathDepthDiff)' == '0' ">..\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
     <WebApiClassLibraryPath Condition=" '$(PathDepthDiff)' == '2' ">..\..\JSopX.WebAPI\JSopX.ClassLibrary</WebApiClassLibraryPath>
     <WebApiClassLibraryPath Condition=" '$(PathDepthDiff)' == '3' ">..\..\..\JSopX.WebAPI\JSopX.ClassLibrary</WebApiClassLibraryPath>
     <WebApiClassLibraryPath Condition=" '$(PathDepthDiff)' == '4' ">..\..\..\..\JSopX.WebAPI\JSopX.ClassLibrary</WebApiClassLibraryPath>
@@ -34,7 +34,7 @@
     <RCLxProperClassLibraryPath Condition=" '$(PathDepthDiff)' == '0' ">..\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
     <RCLxProperClassLibraryPath Condition=" '$(PathDepthDiff)' == '2' ">..\..\JSopX.RCLxProper\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
     <RCLxProperClassLibraryPath Condition=" '$(PathDepthDiff)' == '3' ">..\..\..\JSopX.RCLxProper\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
-    <RCLxProperClassLibraryPath Condition=" '$(PathDepthDiff)' == '4' ">..\..\..\..\JSopX.RCLxProper\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
+    <RCLxProperClassLibraryPath Condition=" '$(PathDepthDiff)' == '4' ">..\..\..\..\JSopX.RCLxProper\JSopX.ClassLibrary</RCLxProperClassLibraryPath>-->
 
     
     
@@ -62,8 +62,8 @@
     <ProjectReference Include="$(RCLxProperPath)\JSopX.RCLxProper.csproj" />
     
     <!-- Use the dynamically resolved path -->
-    <ProjectReference Include="$(WebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
-    <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    <!--<ProjectReference Include="$(WebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />-->
     
    <!--<ProjectReference Include="$(WebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
    <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />-->

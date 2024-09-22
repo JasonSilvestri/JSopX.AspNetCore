@@ -28,8 +28,8 @@
     <ProjectReference Include="$(RCLxProperPath)\JSopX.RCLxProper.csproj" />
     <ProjectReference Include="$(WebApiPath)\JSopX.WebAPI.csproj" />
 
-    <ProjectReference Include="$(WebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
-    <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    <!--<ProjectReference Include="$(WebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />-->
   </ItemGroup>
   
   

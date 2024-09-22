@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PackageId>$(AssemblyName)-469D7540-62CD-44A6-94D6-1895852647DE</PackageId>
   </PropertyGroup>
 
 

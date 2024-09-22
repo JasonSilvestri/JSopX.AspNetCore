@@ -10,26 +10,87 @@
   </PropertyGroup>-->
 
   <PropertyGroup>
+    
+    
     <ClassLibraryPath>..\JSopX.ClassLibrary\JSopX.ClassLibrary</ClassLibraryPath>
     <WebAPIPath>..\JSopX.WebAPI\JSopX.WebAPI</WebAPIPath>
     <RCLxProperPath>..\JSopX.RCLxProper\JSopX.RCLxProper</RCLxProperPath>
-    <WebApiClassLibraryPath>..\..\..\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
-    <RCLxProperClassLibraryPath>..\..\..\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
+    
+    <!-- Get the project directory and solution directory -->
+    <ProjectPath>$(MSBuildProjectDirectory)</ProjectPath>
+    <RootPath>$(SolutionDir)</RootPath>
+
+    <!-- Calculate directory depth -->
+    <ProjectPathDepth>$([System.String]::Copy($(ProjectPath)).Split('\').Length)</ProjectPathDepth>
+    <RootPathDepth>$([System.String]::Copy($(RootPath)).Split('\').Length)</RootPathDepth>
+    <PathDepthDiff>$([MSBuild]::Subtract($(ProjectPathDepth), $(RootPathDepth)))</PathDepthDiff>
+
+    <!-- Conditional Property Setting Based on PathDepthDiff -->
+    <WebApiClassLibraryPath Condition=" '$(PathDepthDiff)' == '0' ">..\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
+    <WebApiClassLibraryPath Condition=" '$(PathDepthDiff)' == '2' ">..\..\JSopX.WebAPI\JSopX.ClassLibrary</WebApiClassLibraryPath>
+    <WebApiClassLibraryPath Condition=" '$(PathDepthDiff)' == '3' ">..\..\..\JSopX.WebAPI\JSopX.ClassLibrary</WebApiClassLibraryPath>
+    <WebApiClassLibraryPath Condition=" '$(PathDepthDiff)' == '4' ">..\..\..\..\JSopX.WebAPI\JSopX.ClassLibrary</WebApiClassLibraryPath>
+
+    <RCLxProperClassLibraryPath Condition=" '$(PathDepthDiff)' == '0' ">..\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
+    <RCLxProperClassLibraryPath Condition=" '$(PathDepthDiff)' == '2' ">..\..\JSopX.RCLxProper\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
+    <RCLxProperClassLibraryPath Condition=" '$(PathDepthDiff)' == '3' ">..\..\..\JSopX.RCLxProper\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
+    <RCLxProperClassLibraryPath Condition=" '$(PathDepthDiff)' == '4' ">..\..\..\..\JSopX.RCLxProper\JSopX.ClassLibrary</RCLxProperClassLibraryPath>
+
+    
+    
+    <!--<WebApiClassLibraryPath>JSopX.WebAPI\JSopX.WebAPI\JSopX.ClassLibrary\JSopX.ClassLibrary</WebApiClassLibraryPath>
+    <RCLxProperClassLibraryPath>JSopX.RCLxProper\JSopX.RCLxProper\JSopX.ClassLibrary\JSopX.ClassLibrary</RCLxProperClassLibraryPath>-->
+ 
+    
+    <!-- Example project paths (to mimic real paths for testing) --><!--
+    <ProjectPath>$(MSBuildProjectDirectory)</ProjectPath>
+    <RootPath>$(SolutionDir)</RootPath>
+
+    --><!-- Calculate directory depth for both ProjectPath and RootPath --><!--
+    <ProjectPathDepth>$([System.String]::Copy($(ProjectPath)).Split('\').Length)</ProjectPathDepth>
+    <RootPathDepth>$([System.String]::Copy($(RootPath)).Split('\').Length)</RootPathDepth>
+
+    --><!-- Calculate the difference in directory depth --><!--
+    <PathDepthDiff>$([MSBuild]::Subtract($(ProjectPathDepth), $(RootPathDepth)))</PathDepthDiff>-->
   </PropertyGroup>
+
 
   <!-- ItemGroup for references -->
   <ItemGroup>
     <ProjectReference Include="$(ClassLibraryPath)\JSopX.ClassLibrary.csproj" />
     <ProjectReference Include="$(WebApiPath)\JSopX.WebAPI.csproj" />
     <ProjectReference Include="$(RCLxProperPath)\JSopX.RCLxProper.csproj" />
+    
+    <!-- Use the dynamically resolved path -->
     <ProjectReference Include="$(WebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
     <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+    
+   <!--<ProjectReference Include="$(WebApiClassLibraryPath)\JSopX.ClassLibrary.csproj" />
+   <ProjectReference Include="$(RCLxProperClassLibraryPath)\JSopX.ClassLibrary.csproj" />-->
+    
+      <!-- If the difference is 2, use this reference --><!--
+  <ProjectReference Condition=" '$(PathDepthDiff)' == '2' " Include="..\'$(WebApiClassLibraryPath)'\JSopX.ClassLibrary.csproj" />
+  
+  --><!-- If the difference is 3, use this reference --><!--
+  <ProjectReference Condition=" '$(PathDepthDiff)' == '3' " Include="..\..\'$(WebApiClassLibraryPath)'\JSopX.ClassLibrary.csproj" />-->
+  
+  <!-- Add more conditions as necessary -->
+  
+  <!--<ProjectReference Condition=" '$(PathDepthDiff)' == '2' " Include="..\..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
+  <ProjectReference Condition=" '$(PathDepthDiff)' == '3' " Include="..\..\..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />-->
+
+
   </ItemGroup>
 
   <!-- Define a target to output messages -->
   <Target Name="PathConfigCheck">
     <!-- Print a message if PathConfig.targets is loaded -->
-    <Message Text="JSopX Nova: PathConfig.targets file has been found and loaded inside official AspNetCore Project." Importance="high" />
+    <Message Text="JSopX Nova: PathConfig.targets file has been found and loaded inside official AspNetCore Project. " Importance="high" />
+    <Message Text="JSopX Nova: Current Project Path = $(ProjectPath)" Importance="high" />
+    <Message Text="JSopX Nova: Solution Path = $(RootPath)" Importance="high" />
+    <Message Text="Project Path Depth: $(ProjectPathDepth)" Importance="high"  />
+    <Message Text="Root Path Depth: $(RootPathDepth)" Importance="high"  />
+    <Message Text="JSopX Nova: Directory Depth Difference = $(PathDepthDiff)" Importance="high" />
   </Target>
-
+  
 </Project>

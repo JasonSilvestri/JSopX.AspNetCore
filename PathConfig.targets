@@ -55,7 +55,7 @@
   </ItemGroup>
 
   <!-- Define a target to output messages -->
-  <Target Name="JsopXVueCorePathConfigCheck">
+  <Target Name="JsopXAspNetCorePathConfigCheck">
     <!-- Print a message if PathConfig.targets is loaded -->
     <Message Text="JSopX Nova: PathConfig.targets file Found. It is now loaded by official JSopX Vue Core Project. " Importance="high" />
     <Message Text="JSopX Nova: Current Project Path = $(ProjectPath)" Importance="high" />

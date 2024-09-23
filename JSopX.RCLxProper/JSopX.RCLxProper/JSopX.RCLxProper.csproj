@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor" InitialTargets="RCLxProperPathConfigCheck">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor" InitialTargets="RCLxProperReferencePathConfigCheck">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>

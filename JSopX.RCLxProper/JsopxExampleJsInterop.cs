@@ -9,14 +9,14 @@ namespace JSopX.RCLxProper
     // This class can be registered as scoped DI service and then injected into Blazor
     // components for use.
 
-    public class ExampleJsInterop : IAsyncDisposable
+    public class JsopxExampleJsInterop : IAsyncDisposable
     {
         private readonly Lazy<Task<IJSObjectReference>> moduleTask;
 
-        public ExampleJsInterop(IJSRuntime jsRuntime)
+        public JsopxExampleJsInterop(IJSRuntime jsRuntime)
         {
             moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-                "import", "./_content/JSopX.RCLxProper/exampleJsInterop.js").AsTask());
+                "import", "./_content/JSopX.RCLxProper/jsopxExampleJsInterop.js").AsTask());
         }
 
         public async ValueTask<string> Prompt(string message)

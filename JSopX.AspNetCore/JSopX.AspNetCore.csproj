@@ -1,4 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web"  InitialTargets="JsopXAspNetCorePathConfigCheck">
+﻿<!--<Project Sdk="Microsoft.NET.Sdk.Web"  InitialTargets="JsopXAspNetCorePathConfigCheck">-->
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -21,28 +23,28 @@
   <!--Option 1: Original-->
 
   <!-- Import if the file exists -->
-  <Import Project="..\PathConfig.targets" Condition="Exists('..\PathConfig.targets')" />
+  <!--<Import Project="..\PathConfig.targets" Condition="Exists('..\PathConfig.targets')" />-->
 
   <!-- Default static project references if the file does not exist -->
-  <ItemGroup Condition="Exists('..\PathConfig.targets')">
+  <!--<ItemGroup Condition="Exists('..\PathConfig.targets')">
     <ProjectReference Include="$(ClassLibraryPath)\JSopX.ClassLibrary.csproj" />
     <ProjectReference Include="$(RCLxProperPath)\JSopX.RCLxProper.csproj" />
     <ProjectReference Include="$(WebApiPath)\JSopX.WebAPI.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 
 
   <!--  Default static project references if the file does not exist--> 
-  <ItemGroup Condition="!Exists('..\PathConfig.targets')">
-    <ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
-    <ProjectReference Include="..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.RCLxProper.csproj" />
-    <ProjectReference Include="..\JSopX.WebAPI\JSopX.WebAPI\JSopX.WebAPI.csproj" />
-  </ItemGroup>
-
-  <!-- Default static project references if the file does not exist -->
-  <!--<ItemGroup>
+  <!--<ItemGroup Condition="!Exists('..\PathConfig.targets')">
     <ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
     <ProjectReference Include="..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.RCLxProper.csproj" />
     <ProjectReference Include="..\JSopX.WebAPI\JSopX.WebAPI\JSopX.WebAPI.csproj" />
   </ItemGroup>-->
+
+  <!-- Default static project references if the file does not exist -->
+  <ItemGroup>
+    <ProjectReference Include="..\JSopX.ClassLibrary\JSopX.ClassLibrary\JSopX.ClassLibrary.csproj" />
+    <ProjectReference Include="..\JSopX.RCLxProper\JSopX.RCLxProper\JSopX.RCLxProper.csproj" />
+    <ProjectReference Include="..\JSopX.WebAPI\JSopX.WebAPI\JSopX.WebAPI.csproj" />
+  </ItemGroup>
   
 </Project>
